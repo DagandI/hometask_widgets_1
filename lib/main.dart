@@ -149,7 +149,7 @@ class MyHomePageState extends State<MyHomePage> {
           String second = youLoseLife
               ? "Enemy hits your ${whatEnemyAttacks.name.toLowerCase()}."
               : "Enemy’s attack was blocked.";
-          centerText = "$first \n $second";
+          centerText = "$first\n$second";
         }
 
         whatEnemyDefends = BodyPart.random();
