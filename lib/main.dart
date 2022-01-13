@@ -144,11 +144,11 @@ class MyHomePageState extends State<MyHomePage> {
           centerText = "You won ";
         } else{
           String first = enemyLoseLife
-              ? "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}."
-              : "Your attack was blocked.";
+              ? 'You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}.'
+              : 'Your attack was blocked.';
           String second = youLoseLife
-              ? "Enemy hits your ${whatEnemyAttacks.name.toLowerCase()}."
-              : "Enemy’s attack was blocked.";
+              ? 'Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}.'
+              : 'Enemy’s attack was blocked.';
           centerText = "$first\n$second";
         }
 
