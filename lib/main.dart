@@ -141,7 +141,7 @@ class MyHomePageState extends State<MyHomePage> {
         } else if(yourLives == 0){
           centerText = "You lose";
         } else if(enemysLives == 0){
-          centerText = "You won ";
+          centerText = "You won";
         } else{
           String first = enemyLoseLife
               ? 'You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}.'
