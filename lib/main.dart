@@ -147,7 +147,7 @@ class MyHomePageState extends State<MyHomePage> {
               ? "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}."
               : "Your attack was blocked.";
           String second = youLoseLife
-              ? "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}."
+              ? "Enemy hits your ${whatEnemyAttacks.name.toLowerCase()}."
               : "Enemy’s attack was blocked.";
           centerText = "$first \n $second";
         }
