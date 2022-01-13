@@ -47,6 +47,8 @@ class MyHomePageState extends State<MyHomePage> {
   int yourLives = maxLives;
   int enemysLives = maxLives;
 
+  String centerText = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,26 +62,27 @@ class MyHomePageState extends State<MyHomePage> {
               enemysLivesCount: enemysLives,
             ),
 
-             const Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 160,
-                  child: Padding(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-                    child: ColoredBox(
-                      color: Color.fromRGBO(197, 209, 234, 1),
-                      child: Center(
+             const SizedBox( height: 30,),
+
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: ColoredBox(
+                    color: FightClubColors.darkPurple,
+                    child: SizedBox(
+                      width: double.infinity,
+                        child: Center(
                           child: Text(
-                            "Hello",
+                            centerText,
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: FightClubColors.darkGreyText),
+                            style: const TextStyle(color: FightClubColors.darkGreyText),
                           ),
-                      ),
+                        ),
                     ),
                   ),
                 ),),
 
+            const SizedBox( height: 30,),
 
 
 
@@ -102,28 +105,6 @@ class MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-
-
-  String _calculateCenterText(
-      final bool enemyLoseLife, final bool youLoseLife) {
-    if (yourLives == 0 && enemysLives == 0) {
-      return 'Draw';
-    } else if (yourLives == 0) {
-      return 'You lost';
-    } else if (enemysLives == 0) {
-      return 'You won';
-    } else {
-      final String first = enemyLoseLife
-          ? "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}."
-          : "Your attack was blocked.";
-
-      final String second = youLoseLife
-          ? "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}."
-          : "Enemy's attack was blocked.";
-
-      return '$first\n$second';
-    }
   }
 
 
@@ -154,6 +135,23 @@ class MyHomePageState extends State<MyHomePage> {
         if (youLoseLife) {
           yourLives -= 1;
         }
+
+        if(enemysLives == 0 && yourLives == 0){
+          centerText = "Draw";
+        } else if(yourLives == 0){
+          centerText = "You lose";
+        } else if(enemysLives == 0){
+          centerText = "You won ";
+        } else{
+          String first = enemyLoseLife
+              ? "You hit enemy`s ${attackingBodyPart!.name.toLowerCase()}."
+              : "Your attack was blocked.";
+          String second = youLoseLife
+              ? "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}."
+              : "Enemy`s attack was blocked.";
+          centerText = "$first \n $second";
+        }
+
         whatEnemyDefends = BodyPart.random();
         whatEnemyAttacks = BodyPart.random();
 
@@ -243,7 +241,7 @@ class FightersInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
           Expanded(child: ColoredBox(color: Colors.white),),
-          Expanded(child: ColoredBox(color: Color.fromRGBO(197, 209, 234, 1),),),
+          Expanded(child: ColoredBox(color: FightClubColors.darkPurple,),),
         ],
       ),
       Row(
@@ -415,9 +413,15 @@ class LivesWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(overallLivesCount, (index) {
         if (index < currentLivesCount) {
-          return Image.asset(FightClubIcons.heartFull, width: 18, height: 18);
+          return Padding(
+            padding: EdgeInsets.only(bottom: index < overallLivesCount -1 ? 4: 0),
+            child: Image.asset(FightClubIcons.heartFull, width: 18, height: 18),
+          );
         } else {
-          return Image.asset(FightClubIcons.heartEmpty, width: 18, height: 18);
+          return Padding(
+            padding: EdgeInsets.only(bottom: index < overallLivesCount -1 ? 4: 0),
+            child: Image.asset(FightClubIcons.heartEmpty, width: 18, height: 18),
+          );
         }
       }),
     );
