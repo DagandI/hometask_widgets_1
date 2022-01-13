@@ -139,7 +139,7 @@ class MyHomePageState extends State<MyHomePage> {
         if(enemysLives == 0 && yourLives == 0){
           centerText = "Draw";
         } else if(yourLives == 0){
-          centerText = "You lose";
+          centerText = "You lost";
         } else if(enemysLives == 0){
           centerText = "You won";
         } else{
